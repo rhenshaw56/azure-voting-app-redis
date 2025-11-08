@@ -31,6 +31,19 @@ pipeline {
          }
       }
    }
+   stage('Docker Push') {
+      steps {
+         echo "Running in $WORKSPACE"
+         dir("$WORKSPACE/azure-vote") {
+            script {
+               docker.withRegistry('', 'dockerhub') {
+                  def image = docker.build("rhage56/rhdentech/jenkins-azure-vote")
+                  image.push()
+               }
+            }
+         }
+      }
+   }
    post {
       always {
          sh(script: 'docker compose down')
