@@ -30,8 +30,7 @@ pipeline {
             }
          }
       }
-   }
-   stage('Docker Push') {
+      stage('Docker Push') {
       steps {
          echo "Running in $WORKSPACE"
          dir("$WORKSPACE/azure-vote") {
@@ -44,6 +43,8 @@ pipeline {
          }
       }
    }
+   }
+
    post {
       always {
          sh(script: 'docker compose down')
