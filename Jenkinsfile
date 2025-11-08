@@ -36,7 +36,7 @@ pipeline {
          dir("$WORKSPACE/azure-vote") {
             script {
                docker.withRegistry('', 'dockerhub') {
-                  def image = docker.build("rhage56/rhdentech/jenkins-azure-vote")
+                  def image = docker.build("rhage56/rhdentech")
                   image.push()
                }
             }
